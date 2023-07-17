@@ -54,7 +54,7 @@ public class Project_CF {
 			//ArrayList<Integer> topnitemindices=PredictionWithZscoreTopN(5,1,neighboursindeces,zscore,weights,mean,std);
 			//WritelnforArray(topnitemindices);
 		}
-		System.out.println("Islem basariyla tamamlandi!");
+		System.out.println("Transaction Completed Successfully!");
 	}
 	
 	private static String FindErrorOfSystem(int[][] useritemmatris,double[][] zscore, double[] mean, double[] std, int neighbourcount,int common_rate_limit,String similarity_type, int scaleMax, String SubData) throws IOException {
@@ -73,7 +73,7 @@ public class Project_CF {
 		
 		for(int i=0;i<user_count;i++){
 			int active_user=i;
-			String prediction_sonuc="";
+			String prediction_result_str="";
 			HashMap<Integer,Double> weights=ComputeSimilarityforActiveUser(useritemmatris,zscore,active_user,common_rate_limit,similarity_type);
 			ArrayList<Integer> neighboursindeces=FindNeighboursforActiveUser(weights,neighbourcount,active_user);
 			for(int j=0;j<item_count;j++){
@@ -94,13 +94,13 @@ public class Project_CF {
 				}
 				else prediction=99;
 				
-				prediction_sonuc+=prediction;
+				prediction_result_str+=prediction;
 				
 				if(!(j==item_count-1))
-				prediction_sonuc+=",";
+				prediction_result_str+=",";
 				
 			}
-			Prediction_result.add(prediction_sonuc);
+			Prediction_result.add(prediction_result_str);
 		}
 		
 		WriteListToFile(Prediction_result,file_name,false);
